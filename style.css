@@ -28,3 +28,6 @@
 #remover-selecionado{
     
 }
+.completed{
+    text-decoration: line-through;
+}
