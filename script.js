@@ -1,19 +1,11 @@
-/* BOTÕES */
-/* //BOTÃO DE ADICIONAR TAREFAS
-//pegar meu botão */
-const myButtonAdd = document.getElementById('criar-tarefa');
-/* //agr eu chamo o evento? */
-myButtonAdd.addEventListener('click', teste)
-/* //minha função tem q pegar o valor digitado e add no final de uma lista???? */
-function teste() {
-/* /////primeiro criando a li? */
-  const li = document.createElement('li')
-  /* ////pegando valor? */
-  const valorDigi = document.getElementById("criar-tarefa").value;
-  /* ////add esse valor a li? */
-    li.appendChild(valorDigi);
+// pegando meu texto-tarefa.. input onde escreve a tarefa
+let TextoTarefa = document.querySelector('#texto-tarefa');
+// pegando meu criar-tarefa.. botao que add tarefas
+let criarTarefas = document.querySelector('#criar-tarefa');
+// add o tal do evento de click
+criarTarefas.addEventListener('click', addTarefa);
+// criando uma função para add tarefas no trem
+function addTarefa() {
 
-  console.log("funfou");
 }
-
-/* // criar-tarefa.addEventListener(click, addTarefasAoClicar) */
+// add as tarefas nas lis
