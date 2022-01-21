@@ -10,9 +10,15 @@ function addTarefa() {
   /* alert("funfou?"); */
   /* alert(textoTarefa); */
   let li = document.createElement('li');
-  li.innerText = textoTarefa.value;
+  li.innerText = textoTarefa.value; // como sou lerda, estava add o .value lá em cima kkkkkkkkkk é testando q se aprende (y)
   lisDeTarefas.appendChild(li);
+
+if (li)
+
+  document.getElementById('texto-tarefa').value = ''; // redefinindo valor, pra poder limpar a caixinha
+  
 }
 // add o tal do evento de click
 btnCriarTarefas.addEventListener('click', addTarefa);
-// TA FUNCIONANDO - POREM, NÃO PEGA O Q ESTÁ DENTRO DO INPUT???? E NEM ADD EM ULTIMO AAAAAAAAAAAAAAAAAAAAAAAAAAAAH
+// ENTENDI ERRADO??? NÃO SEI, MAS TA FUNCIONANDO KKKKKKK <33333
+// NÃO MEXE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
