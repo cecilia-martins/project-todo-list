@@ -9,9 +9,10 @@ let lisDeTarefas = document.getElementById('lista-tarefas');
 function addTarefa() {
   /* alert("funfou?"); */
   /* alert(textoTarefa); */
-  let itemDaLista = document.createElement('li');
-  itemDaLista.innerText = textoTarefa;
-  lisDeTarefas.appendChild(itemDaLista);
+  let li = document.createElement('li');
+  li.innerText = textoTarefa.value;
+  lisDeTarefas.appendChild(li);
 }
 // add o tal do evento de click
 btnCriarTarefas.addEventListener('click', addTarefa);
+// TA FUNCIONANDO - POREM, NÃO PEGA O Q ESTÁ DENTRO DO INPUT???? E NEM ADD EM ULTIMO AAAAAAAAAAAAAAAAAAAAAAAAAAAAH
