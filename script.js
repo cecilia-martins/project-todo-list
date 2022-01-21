@@ -18,7 +18,7 @@ let removeSelecionado = document.getElementById('remover-selecionado');
 // pegando o  botão salvar-tarefas
 let salvar = document.getElementById('salvar-tarefas');
 
-// criando uma função para add tarefas no trem
+// FUNÇÃO QUE ADD TAREFA
 function addTarefa() {
   /* alert("funfou?"); */
   /* alert(textoTarefa); */
@@ -33,3 +33,10 @@ btnCriarTarefas.addEventListener('click', addTarefa);
 // ENTENDI ERRADO??? NÃO SEI, MAS TA FUNCIONANDO KKKKKKK <33333
 // NÃO MEXE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
+// FUNÇÃO QUE APAGA TUDO
+function apagaTudo() {
+  if (lisDeTarefas.innerText !== "") {
+    lisDeTarefas.innerText = "";
+  }
+}
+x.addEventListener('click', apagaTudo);
