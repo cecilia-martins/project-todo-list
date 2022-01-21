@@ -13,11 +13,13 @@ function addTarefa() {
   li.innerText = textoTarefa.value; // como sou lerda, estava add o .value lá em cima kkkkkkkkkk é testando q se aprende (y)
   lisDeTarefas.appendChild(li);
 
-if (li)
-
   document.getElementById('texto-tarefa').value = ''; // redefinindo valor, pra poder limpar a caixinha
-  
 }
+// FUNÇÃO PRA MUDAR A COR AO CLICAR AAAAAAAAAAAAAAAAAAAAAAH
+function mudarCor() {
+
+}
+
 // add o tal do evento de click
 btnCriarTarefas.addEventListener('click', addTarefa);
 // ENTENDI ERRADO??? NÃO SEI, MAS TA FUNCIONANDO KKKKKKK <33333
