@@ -39,4 +39,29 @@ function apagaTudo() {
     lisDeTarefas.innerText = "";
   }
 }
-x.addEventListener('click', apagaTudo);
+x.addEventListener('click', apagaTudo); // MEU BOTÃO FUNCIONA!!!!!!!!!!!!!!!!AAAAAAAAAAAAAAAA NÃO MEXE!!!!!!!!!!!!!!!!!!
+
+// FUNÇÃO QUE..RISCA
+// CRIANDO A FUNÇÃO
+function risca() {
+ let completo = document.querySelector('.completed'); // PEGANDO A CLASSE
+// add a class completed
+/*   completo.event.target.classList.add('completed'); */
+  event.target.classList.add('completed');
+// depois remover
+  
+
+// console.log('funfou')
+} addEventListener('dblclick', risca);
+
+// O MSM ACIMA, MAS PRA REMOVER KKKK
+
+// FUNÇÃO MUDAR COR
+function corFundo() {
+  let nasLis = document.querySelectorAll('li');
+
+  event.target.classList.add('mudarCor');
+  
+  
+} lisDeTarefas.addEventListener('click', corFundo);
+// FUNCIONA - MAS FALTA O REMOVER
