@@ -44,7 +44,7 @@ x.addEventListener('click', apagaTudo); // MEU BOTÃO FUNCIONA!!!!!!!!!!!!!!!!AA
 // FUNÇÃO QUE..RISCA
 // CRIANDO A FUNÇÃO
 function risca() {
- let completo = document.querySelector('.completed'); // PEGANDO A CLASSE
+/*  let completo = document.querySelector('.completed'); */ // PEGANDO A CLASSE
 // add a class completed
 /*   completo.event.target.classList.add('completed'); */
   event.target.classList.add('completed');
@@ -58,7 +58,7 @@ function risca() {
 
 // FUNÇÃO MUDAR COR
 function corFundo() {
-  let nasLis = document.querySelectorAll('li');
+  // let nasLis = document.querySelectorAll('li');
 
   event.target.classList.add('mudarCor');
   
