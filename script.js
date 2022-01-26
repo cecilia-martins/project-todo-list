@@ -23,7 +23,7 @@ function addTarefa() {
   /* alert("funfou?"); */
   /* alert(textoTarefa); */
   let li = document.createElement('li');
-  li.innerText = textoTarefa.value; // como sou lerda, estava add o .value lá em cima kkkkkkkkkk é testando q se aprende (y)
+  li.innerText = textoTarefa.value;
   lisDeTarefas.appendChild(li);
 
   document.getElementById('texto-tarefa').value = ''; // redefinindo valor, pra poder limpar a caixinha
@@ -43,7 +43,7 @@ x.addEventListener('click', apagaTudo); // MEU BOTÃO FUNCIONA!!!!!!!!!!!!!!!!AA
 
 // FUNÇÃO QUE..RISCA
 // CRIANDO A FUNÇÃO
-function risca() {
+function risca(event) {
 /*  let completo = document.querySelector('.completed'); */ // PEGANDO A CLASSE
 // add a class completed
 /*   completo.event.target.classList.add('completed'); */
@@ -54,18 +54,36 @@ function risca() {
 } lisDeTarefas.addEventListener('dblclick', risca); // FUNCIONANDO, NÃO MEXE!!!!
 
 // FUNÇÃO MUDAR COR
-function corFundo() {
-  // let nasLis = document.querySelectorAll('li');
+function corFundo(event) {
+  // console.log(lisDeTarefas.children.length);
+  for(let posi = 0; posi < lisDeTarefas.children.length; posi +=1) {
+       lisDeTarefas.children[posi].style.backgroundColor = "";
+      
+  }
 
-  event.target.classList.toggle('mudarCor');
+  event.target.style.backgroundColor = 'rgb(128, 128, 128)';
+
   
-  
+
 } lisDeTarefas.addEventListener('click', corFundo);
-// FUNCIONA - MAS FALTA O REMOVER - REMOVE MAS FALTA SELECIONAR
 
-// FUNÇÃO DO BOTÃO DE SALAVAR
-/* function localStorage(){
- 
-  localStorage.setItem();
 
-} salvar.addEventListener('click', localStorage); */
+// FUNDO FICA CINZA --- MAS SELECIONA TUDO
+
+// FUNÇÃO PRA REMOVER A COR DE FUNDO??????????????????????????
+// function removerCor() {
+
+//   for(let posi = 0; posi < lisDeTarefas.length; posi +=1) {
+//     lisDeTarefas.children[posi].classList.remove('mudarCor');
+//   }
+// }
+
+// FUNÇÃO DO BOTÃO REMOVER FINALIZADOS
+
+// FUNÇÃO DO BOTÃO DE SALAVAR - RASCUNHO
+// function localStorage(){
+//   let ???????
+//   // localStorage.setItem();
+//   document.getElementById('texto-tarefa').value ?????????
+
+// } salvar.addEventListener('click', localStorage);
