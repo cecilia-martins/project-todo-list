@@ -133,3 +133,17 @@ function moverBaixo() {
     }
   }
 } praBaixo.addEventListener('click', moverBaixo);
+
+// FUNÇÃO BOTÃO REMOVER SELECIONADO
+function removerSelecionado() {
+  let selecionadoRemove = '';
+for(let posi = lisDeTarefas.children.length -1; posi >= 0; posi -= 1) {
+  if(lisDeTarefas.children[posi].style.backgroundColor = 'rgb(128, 128, 128)') {
+
+    selecionadoRemove = lisDeTarefas.children[posi];
+
+    lisDeTarefas.removeChild(selecionadoRemove);
+    return lisDeTarefas;
+  }
+}
+} removeSelecionado.addEventListener('click', removerSelecionado);
