@@ -82,9 +82,37 @@ function removerFinalizado() {
 }
   removeFinalizado.addEventListener('click', removerFinalizado);
 // FUNÇÃO DO BOTÃO DE SALAVAR - RASCUNHO
+
 // function localStorage(){
 //   let ???????
 //   // localStorage.setItem();
 //   document.getElementById('texto-tarefa').value ?????????
 
 // } salvar.addEventListener('click', localStorage);
+
+// FUNÇÃO DO BOTÃO CIMA
+function moverCima() {
+  let irmaoSelecionado = '';
+  let irmaoDeCima = '';
+  for(let posi = 0; posi < lisDeTarefas.children.length; posi += 1) {
+    if(lisDeTarefas.children[posi].previousSibling.innerText != undefined && lisDeTarefas.children[posi].style.backgroundColor === 'rgb(128, 128, 128)') {
+      console.log('funfou');
+      irmaoDeCima = lisDeTarefas.children[posi].previousSibling.innerText;
+
+      irmaoSelecionado = lisDeTarefas.children[posi].innerText;
+
+      lisDeTarefas.children[posi].previousSibling.innerText = irmaoSelecionado;
+
+      lisDeTarefas.children[posi].innerText = irmaoDeCima;
+
+      lisDeTarefas.children[posi].previousSibling.style.backgroundColor = 'rgb(128, 128, 128)';
+
+      lisDeTarefas.children[posi].style.backgroundColor = '';
+    } 
+  }
+} praCima.addEventListener('click', moverCima);
+
+// FUNÇÃO DO BOTÃO BAIXO
+// function moverBaixo() {
+
+// } praBaixo.addEventListener('click', moverBaixo);
