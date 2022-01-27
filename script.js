@@ -96,7 +96,6 @@ function moverCima() {
   let irmaoDeCima = '';
   for(let posi = 0; posi < lisDeTarefas.children.length; posi += 1) {
     if(lisDeTarefas.children[posi].previousSibling.innerText != undefined && lisDeTarefas.children[posi].style.backgroundColor === 'rgb(128, 128, 128)') {
-      console.log('funfou');
       irmaoDeCima = lisDeTarefas.children[posi].previousSibling.innerText;
 
       irmaoSelecionado = lisDeTarefas.children[posi].innerText;
@@ -108,11 +107,29 @@ function moverCima() {
       lisDeTarefas.children[posi].previousSibling.style.backgroundColor = 'rgb(128, 128, 128)';
 
       lisDeTarefas.children[posi].style.backgroundColor = '';
+      return lisDeTarefas.children;
     } 
   }
 } praCima.addEventListener('click', moverCima);
 
 // FUNÇÃO DO BOTÃO BAIXO
-// function moverBaixo() {
+function moverBaixo() {
+  let selecionado = '';
+  let irmaoDeBaixo = '';
+  for(let posi = 0; posi < lisDeTarefas.children.length; posi += 1) {
+  if (lisDeTarefas.children[posi].nextElementSibling !== null && lisDeTarefas.children[posi].style.backgroundColor === 'rgb(128, 128, 128)') {
+    
+      irmaoDeBaixo = lisDeTarefas.children[posi].nextElementSibling.innerText;
+      selecionado = lisDeTarefas.children[posi].innerText;
 
-// } praBaixo.addEventListener('click', moverBaixo);
+      lisDeTarefas.children[posi].nextElementSibling.innerText = selecionado;
+
+      lisDeTarefas.children[posi].innerText = irmaoDeBaixo;
+
+      lisDeTarefas.children[posi].nextElementSibling.style.backgroundColor = 'rgb(128, 128, 128)';
+
+      lisDeTarefas.children[posi].style.backgroundColor = '';
+      return lisDeTarefas.children;
+    }
+  }
+} praBaixo.addEventListener('click', moverBaixo);
