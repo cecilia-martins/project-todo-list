@@ -44,9 +44,7 @@ x.addEventListener('click', apagaTudo); // MEU BOTÃO FUNCIONA!!!!!!!!!!!!!!!!AA
 // FUNÇÃO QUE..RISCA
 // CRIANDO A FUNÇÃO
 function risca(event) {
-/*  let completo = document.querySelector('.completed'); */ // PEGANDO A CLASSE
-// add a class completed
-/*   completo.event.target.classList.add('completed'); */
+
   event.target.classList.toggle('completed');
 // troquei add pelo toggle
 
@@ -66,20 +64,23 @@ function corFundo(event) {
   
 
 } lisDeTarefas.addEventListener('click', corFundo);
+//
 
+// FUNÇÃO DO BOTÃO REMOVER FINALIZADOS - removeFinalkizado
 
-// FUNDO FICA CINZA --- MAS SELECIONA TUDO
-
-// FUNÇÃO PRA REMOVER A COR DE FUNDO??????????????????????????
-// function removerCor() {
-
-//   for(let posi = 0; posi < lisDeTarefas.length; posi +=1) {
-//     lisDeTarefas.children[posi].classList.remove('mudarCor');
-//   }
-// }
-
-// FUNÇÃO DO BOTÃO REMOVER FINALIZADOS
-
+function removerFinalizado() {
+  let liFilho = '';
+ for(let posi = lisDeTarefas.children.length -1; posi >= 0; posi -= 1) {
+  //  console.log(lisDeTarefas.childNodes[posi].classList[0]);
+  if(lisDeTarefas.children[posi].classList[0] === 'completed') {
+     liFilho = lisDeTarefas.children[posi];
+    
+    lisDeTarefas.removeChild(liFilho);
+    
+  }
+ }
+}
+  removeFinalizado.addEventListener('click', removerFinalizado);
 // FUNÇÃO DO BOTÃO DE SALAVAR - RASCUNHO
 // function localStorage(){
 //   let ???????
