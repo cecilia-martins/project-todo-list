@@ -1,0 +1,57 @@
+#funcionamento {
+
+  /* ttt */
+
+}
+
+#texto-tarefa {
+
+  /* ttt */
+}
+
+#lista-tarefas {
+
+  /* ttt */
+}
+
+#criar-tarefa {
+
+  /* border: solid red 5px; */
+}
+
+#apaga-tudo {
+
+  /* ttt */
+}
+
+#remover-finalizados {
+
+  /* ttt */
+}
+
+#salvar-tarefas {
+
+  /* ttt */
+}
+
+#mover-cima {
+
+  /* ttt */
+
+}
+
+#mover-baixo {
+
+  /* ttt */
+
+}
+
+#remover-selecionado {
+
+  /* ttt */
+
+}
+
+.completed {
+  text-decoration: line-through solid black;
+}
