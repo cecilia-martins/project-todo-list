@@ -1,3 +1,7 @@
+.conteudo {
+  background-color: #f2f7f5;
+}
+
 #funcionamento {
 
   /* ttt */
@@ -53,5 +57,5 @@
 }
 
 .completed {
-  text-decoration: line-through solid black;
+  text-decoration: line-through solid rgb(0,0,0);
 }

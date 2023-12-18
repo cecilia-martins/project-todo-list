@@ -16,7 +16,7 @@ const removeFinalizado = document.getElementById('remover-finalizados');
 // pegando o botão remover-selecionado
 const removeSelecionado = document.getElementById('remover-selecionado');
 // pegando o  botão salvar-tarefas
-// const salvar = document.getElementById('salvar-tarefas');
+const salvar = document.getElementById('salvar-tarefas');
 
 // FUNÇÃO QUE ADD TAREFA
 function addTarefa() {
@@ -56,8 +56,6 @@ function corFundo({ target }) {
   for (let posi = 0; posi < lisDeTarefas.children.length; posi += 1) {
     lisDeTarefas.children[posi].style.backgroundColor = '';
   }
-  // eslint-disable-next-line no-param-reassign
-  // eslint-disable-next-line sonarjs/no-duplicate-string
   target.style.backgroundColor = 'rgb(128, 128, 128)';
 } lisDeTarefas.addEventListener('click', corFundo);
 //
@@ -77,13 +75,43 @@ function removerFinalizado() {
 }
 removeFinalizado.addEventListener('click', removerFinalizado);
 // FUNÇÃO DO BOTÃO DE SALAVAR - RASCUNHO
+function localStorageSave() {
+  const tarefas = [];
 
-// function localStorage(){
-//   let ???????
-//   // localStorage.setItem();
-//   document.getElementById('texto-tarefa').value ?????????
+  // Itera sobre as li's para obter o texto e a classe de cada tarefa
+  for (let i = 0; i < lisDeTarefas.children.length; i += 1) {
+    const tarefa = {
+      texto: lisDeTarefas.children[i].innerText,
+      classe: lisDeTarefas.children[i].classList.contains('completed') ? 'completed' : '',
+    };
+    tarefas.push(tarefa);
+  }
 
-// } salvar.addEventListener('click', localStorage);
+  // Salva o array de tarefas no localStorage como uma string
+  localStorage.setItem('tarefas', JSON.stringify(tarefas));
+}
+
+// Carrega as tarefas salvas no localStorage quando a página carrega
+function saveBtn() {
+  const tarefasSalvas = localStorage.getItem('tarefas');
+
+  if (tarefasSalvas) {
+    const tarefas = JSON.parse(tarefasSalvas);
+
+    // Adiciona as tarefas de volta à lista
+    tarefas.forEach(function (tarefa) {
+      const li = document.createElement('li');
+      li.innerText = tarefa.texto;
+      // Adiciona a classe 'completed' se a tarefa tiver essa classe
+      if (tarefa.classe === 'completed') {
+        li.classList.add('completed');
+      }
+      lisDeTarefas.appendChild(li);
+    });
+  }
+} window.addEventListener('load', saveBtn);
+
+salvar.addEventListener('click', localStorageSave);
 
 // FUNÇÃO DO BOTÃO CIMA
 function moverCima() {
