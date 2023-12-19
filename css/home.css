@@ -1,11 +1,28 @@
 .conteudo {
+  background-color: var(--cor-main);
+  border: solid red 2px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
-  /* background-color: #f2f7f5; */
+#titulo {
+  font-size: 1.5rem;
+  line-height: 1;
+  padding: 20px 20px 10px;
+  color: var(--cor-headline);
 }
 
 #funcionamento {
+  padding-bottom: 20px;
+  color: var(--cor-paragraph);
+}
 
-  /* ttt */
+.container-main {
+  border: solid;
+  padding: 60px;
 
 }
 
