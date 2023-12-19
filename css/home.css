@@ -21,8 +21,11 @@
 }
 
 .container-main {
-  border: solid;
+  border: solid var(--cor-headline) 1.5px;
+  border-radius: 5px;
   padding: 60px;
+  box-shadow: 1px 1px 30px 1px grey;
+  display: grid;
 
 }
 
