@@ -56,6 +56,7 @@ function corFundo({ target }) {
   for (let posi = 0; posi < lisDeTarefas.children.length; posi += 1) {
     lisDeTarefas.children[posi].style.backgroundColor = '';
   }
+  // eslint-disable-next-line sonarjs/no-duplicate-string, no-param-reassign
   target.style.backgroundColor = 'rgb(128, 128, 128)';
 } lisDeTarefas.addEventListener('click', corFundo);
 //
@@ -99,7 +100,7 @@ function saveBtn() {
     const tarefas = JSON.parse(tarefasSalvas);
 
     // Adiciona as tarefas de volta à lista
-    tarefas.forEach(function (tarefa) {
+    tarefas.forEach((tarefa) => {
       const li = document.createElement('li');
       li.innerText = tarefa.texto;
       // Adiciona a classe 'completed' se a tarefa tiver essa classe
