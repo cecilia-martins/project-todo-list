@@ -57,7 +57,7 @@ function corFundo({ target }) {
     lisDeTarefas.children[posi].style.backgroundColor = '';
   }
   // eslint-disable-next-line sonarjs/no-duplicate-string, no-param-reassign
-  target.style.backgroundColor = 'rgb(128, 128, 128)';
+  target.style.backgroundColor = 'var(--cor-highlight)';
 } lisDeTarefas.addEventListener('click', corFundo);
 //
 

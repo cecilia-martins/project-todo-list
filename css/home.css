@@ -21,17 +21,52 @@
 }
 
 .container-main {
-  border: solid var(--cor-headline) 1.5px;
+  border: solid var(--cor-headline) 2px;
   border-radius: 5px;
   padding: 60px;
-  box-shadow: 1px 1px 30px 1px grey;
-  display: grid;
 
+  /* box-shadow: 0.5px 0.5px 1px 0.5px grey; */
 }
 
-#texto-tarefa {
+#input-tarefa {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
 
-  /* ttt */
+#input-tarefa input {
+  border: solid 2px var(--cor-headline);
+  width: 400px;
+  height: 30px;
+  border-radius: 3px;
+}
+
+#input-tarefa input::placeholder {
+  font-family: Poppins, sans-serif;
+  text-transform: uppercase;
+  padding-left: 5px;
+}
+
+#criar-tarefa {
+  width: 160px;
+  height: 35px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--cor-headline);
+  background: var(--cor-highlight);
+  border-radius: 3px;
+  border: none;
+}
+
+#container-btns {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  /* padding: 20px 10px 10px; */
+
+  /* margin-top: 20px; */
 }
 
 #lista-tarefas {
@@ -39,42 +74,67 @@
   /* ttt */
 }
 
-#criar-tarefa {
-
-  /* border: solid red 5px; */
-}
-
 #apaga-tudo {
-
-  /* ttt */
-}
-
-#remover-finalizados {
-
-  /* ttt */
-}
-
-#salvar-tarefas {
-
-  /* ttt */
+  width: 40px;
+  height: 40px;
+  font-weight: 600;
+  color: var(--cor-texto);
+  background: var(--cor-erro-2);
+  border-radius: 3px;
+  border: none;
 }
 
 #mover-cima {
-
-  /* ttt */
-
+  width: 40px;
+  height: 40px;
+  font-weight: 600;
+  color: var(--cor-texto);
+  background: var(--cor-alerta-2);
+  border-radius: 3px;
+  border: none;
 }
 
 #mover-baixo {
+  width: 40px;
+  height: 40px;
+  font-weight: 600;
+  color: var(--cor-texto);
+  background: var(--cor-alerta-2);
+  border-radius: 3px;
+  border: none;
+}
 
-  /* ttt */
-
+#remover-finalizados {
+  width: 120px;
+  height: 40px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--cor-texto);
+  background: var(--cor-fundo);
+  border-radius: 3px;
+  border: none;
 }
 
 #remover-selecionado {
+  width: 130px;
+  height: 40px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--cor-texto);
+  background: var(--cor-fundo);
+  border-radius: 3px;
+  border: none;
+}
 
-  /* ttt */
-
+#salvar-tarefas {
+  width: 80px;
+  height: 40px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--cor-texto);
+  background: var(--cor-sucesso-2);
+  border-radius: 3px;
+  border: none;
 }
 
 .completed {
