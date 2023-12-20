@@ -121,13 +121,13 @@ function moverCima() {
   for (let i = 0; i < lisDeTarefas.children.length; i += 1) {
     if (lisDeTarefas.children[i]
       .previousSibling.innerText !== undefined && lisDeTarefas
-      .children[i].style.backgroundColor === 'rgb(128, 128, 128)') {
+      .children[i].style.backgroundColor === 'var(--cor-highlight)') {
       irmaoDeCima = lisDeTarefas.children[i].previousSibling.innerText;
 
       irmaoSelecionado = lisDeTarefas.children[i].innerText;
       lisDeTarefas.children[i].previousSibling.innerText = irmaoSelecionado;
       lisDeTarefas.children[i].innerText = irmaoDeCima;
-      lisDeTarefas.children[i].previousSibling.style.backgroundColor = 'rgb(128, 128, 128)';
+      lisDeTarefas.children[i].previousSibling.style.backgroundColor = 'var(--cor-highlight)';
       lisDeTarefas.children[i].style.backgroundColor = '';
       return lisDeTarefas.children;
     }
@@ -141,12 +141,12 @@ function moverBaixo() {
   for (let i = 0; i < lisDeTarefas.children.length; i += 1) {
     if (lisDeTarefas.children[i]
       .nextElementSibling !== null
-      && lisDeTarefas.children[i].style.backgroundColor === 'rgb(128, 128, 128)') {
+      && lisDeTarefas.children[i].style.backgroundColor === 'var(--cor-highlight)') {
       irmaoDeBaixo = lisDeTarefas.children[i].nextElementSibling.innerText;
       selecionado = lisDeTarefas.children[i].innerText;
       lisDeTarefas.children[i].nextElementSibling.innerText = selecionado;
       lisDeTarefas.children[i].innerText = irmaoDeBaixo;
-      lisDeTarefas.children[i].nextElementSibling.style.backgroundColor = 'rgb(128, 128, 128)';
+      lisDeTarefas.children[i].nextElementSibling.style.backgroundColor = 'var(--cor-highlight)';
       lisDeTarefas.children[i].style.backgroundColor = '';
       return lisDeTarefas.children;
     }
@@ -159,7 +159,7 @@ function removerSelecionado() {
   for (let posi = lisDeTarefas.children.length - 1; posi >= 0; posi -= 1) {
     // eslint-disable-next-line no-constant-condition
     // eslint-disable-next-line no-cond-assign
-    if (lisDeTarefas.children[posi].style.backgroundColor = 'rgb(128, 128, 128)') {
+    if (lisDeTarefas.children[posi].style.backgroundColor = 'var(--cor-highlight)') {
       selecionadoRemove = lisDeTarefas.children[posi];
       lisDeTarefas.removeChild(selecionadoRemove);
       return lisDeTarefas;
