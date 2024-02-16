@@ -1,35 +1,34 @@
-// BOTÕES
 // pegando meu texto-tarefa.. input onde escreve a tarefa
-const textoTarefa = document.getElementById('texto-tarefa');
+const inputText = document.getElementById('texto-tarefa');
 // pegando meu criar-tarefa.. botao que add tarefas
-const btnCriarTarefas = document.querySelector('#criar-tarefa');
+const createTaskBtn = document.querySelector('#criar-tarefa');
 // pegando minha lista
 const taskList = document.getElementById('lista-tarefas');
 // pegando o botão apaga-tudo
 const x = document.getElementById('apaga-tudo');
 // pegando o botão mover-cima
-const praCima = document.getElementById('mover-cima');
+const toUpBtn = document.getElementById('mover-cima');
 // pegando o botão mover-baixo
-const praBaixo = document.getElementById('mover-baixo');
+const toDownBtn = document.getElementById('mover-baixo');
 // pegando o botão remover-finalizados
-const removeFinalizado = document.getElementById('remover-finalizados');
+const finishedBtn = document.getElementById('remover-finalizados');
 // pegando o botão remover-selecionado
-const removeSelecionado = document.getElementById('remover-selecionado');
+const removeSelectedBtn = document.getElementById('remover-selecionado');
 // pegando o  botão salvar-tarefas
-const salvar = document.getElementById('salvar-tarefas');
+const saveTasksBtn = document.getElementById('salvar-tarefas');
 
 // FUNÇÃO QUE ADD TAREFA
 function addTarefa() {
   /* alert("funfou?"); */
   /* alert(textoTarefa); */
   const li = document.createElement('li');
-  li.innerText = textoTarefa.value;
+  li.innerText = inputText.value;
   taskList.appendChild(li);
 
   document.getElementById('texto-tarefa').value = ''; // redefinindo valor, pra poder limpar a caixinha
 }
 // add o tal do evento de click
-btnCriarTarefas.addEventListener('click', addTarefa);
+createTaskBtn.addEventListener('click', addTarefa);
 // ENTENDI ERRADO??? NÃO SEI, MAS TA FUNCIONANDO KKKKKKK <33333
 // NÃO MEXE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -74,7 +73,7 @@ function removerFinalizado() {
     }
   }
 }
-removeFinalizado.addEventListener('click', removerFinalizado);
+finishedBtn.addEventListener('click', removerFinalizado);
 // FUNÇÃO DO BOTÃO DE SALAVAR - RASCUNHO
 function localStorageSave() {
   const tarefas = [];
@@ -93,65 +92,65 @@ function localStorageSave() {
 }
 
 // Carrega as tarefas salvas no localStorage quando a página carrega
-function saveBtn() {
-  const tarefasSalvas = localStorage.getItem('tarefas');
+function saveTasks() {
+  const savedTasks = localStorage.getItem('tarefas');
 
-  if (tarefasSalvas) {
-    const tarefas = JSON.parse(tarefasSalvas);
+  if (savedTasks) {
+    const tasks = JSON.parse(savedTasks);
 
-    // Adiciona as tarefas de volta à lista
-    tarefas.forEach((tarefa) => {
+    // Adiciona as tasks de volta à lista
+    tasks.forEach((task) => {
       const li = document.createElement('li');
-      li.innerText = tarefa.texto;
-      // Adiciona a classe 'completed' se a tarefa tiver essa classe
-      if (tarefa.classe === 'completed') {
+      li.innerText = task.texto;
+      // Adiciona a classe 'completed' se a task tiver essa classe
+      if (task.classe === 'completed') {
         li.classList.add('completed');
       }
       taskList.appendChild(li);
     });
   }
-} window.addEventListener('load', saveBtn);
+} window.addEventListener('load', saveTasks);
 
-salvar.addEventListener('click', localStorageSave);
+saveTasksBtn.addEventListener('click', localStorageSave);
 
 // FUNÇÃO DO BOTÃO CIMA
-function moverCima() {
+function moveUpBtn() {
   let irmaoSelecionado = '';
-  let irmaoDeCima = '';
+  let previousTask = '';
   for (let i = 0; i < taskList.children.length; i += 1) {
     if (taskList.children[i]
       .previousSibling.innerText !== undefined && taskList
       .children[i].style.backgroundColor === 'var(--cor-highlight)') {
-      irmaoDeCima = taskList.children[i].previousSibling.innerText;
+      previousTask = taskList.children[i].previousSibling.innerText;
 
       irmaoSelecionado = taskList.children[i].innerText;
       taskList.children[i].previousSibling.innerText = irmaoSelecionado;
-      taskList.children[i].innerText = irmaoDeCima;
+      taskList.children[i].innerText = previousTask;
       taskList.children[i].previousSibling.style.backgroundColor = 'var(--cor-highlight)';
       taskList.children[i].style.backgroundColor = '';
       return taskList.children;
     }
   }
-} praCima.addEventListener('click', moverCima);
+} toUpBtn.addEventListener('click', moveUpBtn);
 
 // FUNÇÃO DO BOTÃO BAIXO
-function moverBaixo() {
-  let selecionado = '';
-  let irmaoDeBaixo = '';
+function moveDownBtn() {
+  let selected = '';
+  let nextTask = '';
   for (let i = 0; i < taskList.children.length; i += 1) {
     if (taskList.children[i]
       .nextElementSibling !== null
       && taskList.children[i].style.backgroundColor === 'var(--cor-highlight)') {
-      irmaoDeBaixo = taskList.children[i].nextElementSibling.innerText;
-      selecionado = taskList.children[i].innerText;
-      taskList.children[i].nextElementSibling.innerText = selecionado;
-      taskList.children[i].innerText = irmaoDeBaixo;
+      nextTask = taskList.children[i].nextElementSibling.innerText;
+      selected = taskList.children[i].innerText;
+      taskList.children[i].nextElementSibling.innerText = selected;
+      taskList.children[i].innerText = nextTask;
       taskList.children[i].nextElementSibling.style.backgroundColor = 'var(--cor-highlight)';
       taskList.children[i].style.backgroundColor = '';
       return taskList.children;
     }
   }
-} praBaixo.addEventListener('click', moverBaixo);
+} toDownBtn.addEventListener('click', moveDownBtn);
 
 // FUNÇÃO BOTÃO REMOVER SELECIONADO
 function removeSelected() {
@@ -163,4 +162,4 @@ function removeSelected() {
       return taskList;
     }
   }
-} removeSelecionado.addEventListener('click', removeSelected);
+} removeSelectedBtn.addEventListener('click', removeSelected);

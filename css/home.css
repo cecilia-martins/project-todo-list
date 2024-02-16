@@ -43,7 +43,7 @@
 #input-tarefa input::placeholder {
   font-family: Poppins, sans-serif;
   text-transform: uppercase;
-  padding-left: 5px;
+  padding-left: 2px;
 }
 
 #criar-tarefa {
