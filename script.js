@@ -4,7 +4,7 @@ const textoTarefa = document.getElementById('texto-tarefa');
 // pegando meu criar-tarefa.. botao que add tarefas
 const btnCriarTarefas = document.querySelector('#criar-tarefa');
 // pegando minha lista
-const lisDeTarefas = document.getElementById('lista-tarefas');
+const taskList = document.getElementById('lista-tarefas');
 // pegando o botão apaga-tudo
 const x = document.getElementById('apaga-tudo');
 // pegando o botão mover-cima
@@ -24,7 +24,7 @@ function addTarefa() {
   /* alert(textoTarefa); */
   const li = document.createElement('li');
   li.innerText = textoTarefa.value;
-  lisDeTarefas.appendChild(li);
+  taskList.appendChild(li);
 
   document.getElementById('texto-tarefa').value = ''; // redefinindo valor, pra poder limpar a caixinha
 }
@@ -35,8 +35,8 @@ btnCriarTarefas.addEventListener('click', addTarefa);
 
 // FUNÇÃO QUE APAGA TUDO
 function apagaTudo() {
-  if (lisDeTarefas.innerText !== '') {
-    lisDeTarefas.innerText = '';
+  if (taskList.innerText !== '') {
+    taskList.innerText = '';
   }
 }
 x.addEventListener('click', apagaTudo); // MEU BOTÃO FUNCIONA!!!!!!!!!!!!!!!!AAAAAAAAAAAAAAAA NÃO MEXE!!!!!!!!!!!!!!!!!!
@@ -48,29 +48,29 @@ function risca(event) {
   // troquei add pelo toggle
 
 // console.log('funfou')
-} lisDeTarefas.addEventListener('dblclick', risca); // FUNCIONANDO, NÃO MEXE!!!!
+} taskList.addEventListener('dblclick', risca); // FUNCIONANDO, NÃO MEXE!!!!
 
 // FUNÇÃO MUDAR COR
 function corFundo({ target }) {
   // console.log(lisDeTarefas.children.length);
-  for (let posi = 0; posi < lisDeTarefas.children.length; posi += 1) {
-    lisDeTarefas.children[posi].style.backgroundColor = '';
+  for (let posi = 0; posi < taskList.children.length; posi += 1) {
+    taskList.children[posi].style.backgroundColor = '';
   }
   // eslint-disable-next-line sonarjs/no-duplicate-string, no-param-reassign
   target.style.backgroundColor = 'var(--cor-highlight)';
-} lisDeTarefas.addEventListener('click', corFundo);
+} taskList.addEventListener('click', corFundo);
 //
 
 // FUNÇÃO DO BOTÃO REMOVER FINALIZADOS - removeFinalkizado
 
 function removerFinalizado() {
   let liFilho = '';
-  for (let posi = lisDeTarefas.children.length - 1; posi >= 0; posi -= 1) {
+  for (let posi = taskList.children.length - 1; posi >= 0; posi -= 1) {
   //  console.log(lisDeTarefas.childNodes[posi].classList[0]);
-    if (lisDeTarefas.children[posi].classList[0] === 'completed') {
-      liFilho = lisDeTarefas.children[posi];
+    if (taskList.children[posi].classList[0] === 'completed') {
+      liFilho = taskList.children[posi];
 
-      lisDeTarefas.removeChild(liFilho);
+      taskList.removeChild(liFilho);
     }
   }
 }
@@ -80,10 +80,10 @@ function localStorageSave() {
   const tarefas = [];
 
   // Itera sobre as li's para obter o texto e a classe de cada tarefa
-  for (let i = 0; i < lisDeTarefas.children.length; i += 1) {
+  for (let i = 0; i < taskList.children.length; i += 1) {
     const tarefa = {
-      texto: lisDeTarefas.children[i].innerText,
-      classe: lisDeTarefas.children[i].classList.contains('completed') ? 'completed' : '',
+      texto: taskList.children[i].innerText,
+      classe: taskList.children[i].classList.contains('completed') ? 'completed' : '',
     };
     tarefas.push(tarefa);
   }
@@ -107,7 +107,7 @@ function saveBtn() {
       if (tarefa.classe === 'completed') {
         li.classList.add('completed');
       }
-      lisDeTarefas.appendChild(li);
+      taskList.appendChild(li);
     });
   }
 } window.addEventListener('load', saveBtn);
@@ -118,18 +118,18 @@ salvar.addEventListener('click', localStorageSave);
 function moverCima() {
   let irmaoSelecionado = '';
   let irmaoDeCima = '';
-  for (let i = 0; i < lisDeTarefas.children.length; i += 1) {
-    if (lisDeTarefas.children[i]
-      .previousSibling.innerText !== undefined && lisDeTarefas
+  for (let i = 0; i < taskList.children.length; i += 1) {
+    if (taskList.children[i]
+      .previousSibling.innerText !== undefined && taskList
       .children[i].style.backgroundColor === 'var(--cor-highlight)') {
-      irmaoDeCima = lisDeTarefas.children[i].previousSibling.innerText;
+      irmaoDeCima = taskList.children[i].previousSibling.innerText;
 
-      irmaoSelecionado = lisDeTarefas.children[i].innerText;
-      lisDeTarefas.children[i].previousSibling.innerText = irmaoSelecionado;
-      lisDeTarefas.children[i].innerText = irmaoDeCima;
-      lisDeTarefas.children[i].previousSibling.style.backgroundColor = 'var(--cor-highlight)';
-      lisDeTarefas.children[i].style.backgroundColor = '';
-      return lisDeTarefas.children;
+      irmaoSelecionado = taskList.children[i].innerText;
+      taskList.children[i].previousSibling.innerText = irmaoSelecionado;
+      taskList.children[i].innerText = irmaoDeCima;
+      taskList.children[i].previousSibling.style.backgroundColor = 'var(--cor-highlight)';
+      taskList.children[i].style.backgroundColor = '';
+      return taskList.children;
     }
   }
 } praCima.addEventListener('click', moverCima);
@@ -138,31 +138,29 @@ function moverCima() {
 function moverBaixo() {
   let selecionado = '';
   let irmaoDeBaixo = '';
-  for (let i = 0; i < lisDeTarefas.children.length; i += 1) {
-    if (lisDeTarefas.children[i]
+  for (let i = 0; i < taskList.children.length; i += 1) {
+    if (taskList.children[i]
       .nextElementSibling !== null
-      && lisDeTarefas.children[i].style.backgroundColor === 'var(--cor-highlight)') {
-      irmaoDeBaixo = lisDeTarefas.children[i].nextElementSibling.innerText;
-      selecionado = lisDeTarefas.children[i].innerText;
-      lisDeTarefas.children[i].nextElementSibling.innerText = selecionado;
-      lisDeTarefas.children[i].innerText = irmaoDeBaixo;
-      lisDeTarefas.children[i].nextElementSibling.style.backgroundColor = 'var(--cor-highlight)';
-      lisDeTarefas.children[i].style.backgroundColor = '';
-      return lisDeTarefas.children;
+      && taskList.children[i].style.backgroundColor === 'var(--cor-highlight)') {
+      irmaoDeBaixo = taskList.children[i].nextElementSibling.innerText;
+      selecionado = taskList.children[i].innerText;
+      taskList.children[i].nextElementSibling.innerText = selecionado;
+      taskList.children[i].innerText = irmaoDeBaixo;
+      taskList.children[i].nextElementSibling.style.backgroundColor = 'var(--cor-highlight)';
+      taskList.children[i].style.backgroundColor = '';
+      return taskList.children;
     }
   }
 } praBaixo.addEventListener('click', moverBaixo);
 
 // FUNÇÃO BOTÃO REMOVER SELECIONADO
-function removerSelecionado() {
-  let selecionadoRemove = '';
-  for (let posi = lisDeTarefas.children.length - 1; posi >= 0; posi -= 1) {
-    // eslint-disable-next-line no-constant-condition
-    // eslint-disable-next-line no-cond-assign
-    if (lisDeTarefas.children[posi].style.backgroundColor = 'var(--cor-highlight)') {
-      selecionadoRemove = lisDeTarefas.children[posi];
-      lisDeTarefas.removeChild(selecionadoRemove);
-      return lisDeTarefas;
+function removeSelected() {
+  let selected = '';
+  for (let index = taskList.children.length - 1; index >= 0; index -= 1) {
+    if (taskList.children[index].style.backgroundColor === 'var(--cor-highlight)') {
+      selected = taskList.children[index];
+      taskList.removeChild(selected);
+      return taskList;
     }
   }
-} removeSelecionado.addEventListener('click', removerSelecionado);
+} removeSelecionado.addEventListener('click', removeSelected);
