@@ -18,19 +18,14 @@ const removeSelectedBtn = document.getElementById('remover-selecionado');
 const saveTasksBtn = document.getElementById('salvar-tarefas');
 
 // FUNÇÃO QUE ADD TAREFA
-function addTarefa() {
-  /* alert("funfou?"); */
-  /* alert(textoTarefa); */
+function addTasks() {
   const li = document.createElement('li');
   li.innerText = inputText.value;
   taskList.appendChild(li);
-
   document.getElementById('texto-tarefa').value = ''; // redefinindo valor, pra poder limpar a caixinha
 }
 // add o tal do evento de click
-createTaskBtn.addEventListener('click', addTarefa);
-// ENTENDI ERRADO??? NÃO SEI, MAS TA FUNCIONANDO KKKKKKK <33333
-// NÃO MEXE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+createTaskBtn.addEventListener('click', addTasks);
 
 // FUNÇÃO QUE APAGA TUDO
 function apagaTudo() {
