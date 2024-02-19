@@ -42,9 +42,8 @@ function completedTask(event) {
 
 // FUNÇÃO MUDAR COR
 function backgroundChanged({ target }) {
-  // console.log(lisDeTarefas.children.length);
-  for (let posi = 0; posi < taskList.children.length; posi += 1) {
-    taskList.children[posi].style.backgroundColor = '';
+  for (let i = 0; i < taskList.children.length; i += 1) {
+    taskList.children[i].style.backgroundColor = '';
   }
   // eslint-disable-next-line sonarjs/no-duplicate-string, no-param-reassign
   target.style.backgroundColor = COLOR_HIGHLIGHT;
@@ -62,16 +61,16 @@ function removerFinalizado() {
 
 // FUNÇÃO DO BOTÃO DE SALAVAR
 function localStorageSave() {
-  const tarefas = [];
+  const tasks = [];
   for (let i = 0; i < taskList.children.length; i += 1) {
-    const tarefa = {
+    const task = {
       texto: taskList.children[i].innerText,
       classe: taskList.children[i].classList.contains('completed') ? 'completed' : '',
     };
-    tarefas.push(tarefa);
+    tasks.push(task);
   }
   // Salva o array de tarefas no localStorage como uma string
-  localStorage.setItem('tarefas', JSON.stringify(tarefas));
+  localStorage.setItem('tarefas', JSON.stringify(tasks));
 }
 
 // Carrega as tarefas salvas no localStorage quando a página carrega
