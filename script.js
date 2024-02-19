@@ -17,6 +17,8 @@ const removeSelectedBtn = document.getElementById('remover-selecionado');
 // pegando o  botão salvar-tarefas
 const saveTasksBtn = document.getElementById('salvar-tarefas');
 
+const COLOR_HIGHLIGHT = 'var(--cor-highlight)';
+
 // FUNÇÃO QUE ADD TAREFA
 function addTasks() {
   const li = document.createElement('li');
@@ -51,7 +53,7 @@ function corFundo({ target }) {
     taskList.children[posi].style.backgroundColor = '';
   }
   // eslint-disable-next-line sonarjs/no-duplicate-string, no-param-reassign
-  target.style.backgroundColor = 'var(--cor-highlight)';
+  target.style.backgroundColor = COLOR_HIGHLIGHT;
 } taskList.addEventListener('click', corFundo);
 //
 
@@ -108,50 +110,66 @@ function saveTasks() {
 
 saveTasksBtn.addEventListener('click', localStorageSave);
 
-// FUNÇÃO DO BOTÃO CIMA
+// FUNÇÕES AUXILIARES DO MOVEDOWN
+
+function findSelectedTask(task) {
+  return task.nextElementSibling !== null && task.style.backgroundColor === COLOR_HIGHLIGHT;
+}
+
+function swapTaskElements(task1, task2) {
+  const tempText = task1.innerText;
+  // eslint-disable-next-line no-param-reassign
+  task1.innerText = task2.innerText;
+  // eslint-disable-next-line no-param-reassign
+  task2.innerText = tempText;
+}
+
+function updateTaskColors(task1, task2) {
+  const selectedColor = task1.style.backgroundColor;
+  // eslint-disable-next-line no-param-reassign
+  task1.style.backgroundColor = task2.style.backgroundColor;
+  // eslint-disable-next-line no-param-reassign
+  task2.style.backgroundColor = selectedColor;
+}
+
+// FUNÇÃO DO BOTÃO MOVER PARA CIMA
 function moveUpBtn() {
-  let irmaoSelecionado = '';
+  let selected = '';
   let previousTask = '';
   for (let i = 0; i < taskList.children.length; i += 1) {
-    if (taskList.children[i]
-      .previousSibling.innerText !== undefined && taskList
-      .children[i].style.backgroundColor === 'var(--cor-highlight)') {
-      previousTask = taskList.children[i].previousSibling.innerText;
-
-      irmaoSelecionado = taskList.children[i].innerText;
-      taskList.children[i].previousSibling.innerText = irmaoSelecionado;
-      taskList.children[i].innerText = previousTask;
-      taskList.children[i].previousSibling.style.backgroundColor = 'var(--cor-highlight)';
-      taskList.children[i].style.backgroundColor = '';
+    if (taskList.children[i].previousSibling.innerText !== undefined
+      && taskList.children[i].style.backgroundColor === COLOR_HIGHLIGHT) {
+      previousTask = taskList.children[i].previousElementSibling;
+      selected = taskList.children[i];
+      updateTaskColors(selected, previousTask);
+      swapTaskElements(selected, previousTask);
       return taskList.children;
     }
   }
-} toUpBtn.addEventListener('click', moveUpBtn);
+}
+toUpBtn.addEventListener('click', moveUpBtn);
 
-// FUNÇÃO DO BOTÃO BAIXO
+// FUNÇÃO BOTÃO DE MOVER PARA BAIXO
 function moveDownBtn() {
   let selected = '';
   let nextTask = '';
   for (let i = 0; i < taskList.children.length; i += 1) {
-    if (taskList.children[i]
-      .nextElementSibling !== null
-      && taskList.children[i].style.backgroundColor === 'var(--cor-highlight)') {
-      nextTask = taskList.children[i].nextElementSibling.innerText;
-      selected = taskList.children[i].innerText;
-      taskList.children[i].nextElementSibling.innerText = selected;
-      taskList.children[i].innerText = nextTask;
-      taskList.children[i].nextElementSibling.style.backgroundColor = 'var(--cor-highlight)';
-      taskList.children[i].style.backgroundColor = '';
+    if (findSelectedTask(taskList.children[i])) {
+      nextTask = taskList.children[i].nextElementSibling;
+      selected = taskList.children[i];
+      updateTaskColors(selected, nextTask);
+      swapTaskElements(selected, nextTask);
       return taskList.children;
     }
   }
-} toDownBtn.addEventListener('click', moveDownBtn);
+}
+toDownBtn.addEventListener('click', moveDownBtn);
 
 // FUNÇÃO BOTÃO REMOVER SELECIONADO
 function removeSelected() {
   let selected = '';
   for (let index = taskList.children.length - 1; index >= 0; index -= 1) {
-    if (taskList.children[index].style.backgroundColor === 'var(--cor-highlight)') {
+    if (taskList.children[index].style.backgroundColor === COLOR_HIGHLIGHT) {
       selected = taskList.children[index];
       taskList.removeChild(selected);
       return taskList;
