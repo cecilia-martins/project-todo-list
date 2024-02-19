@@ -23,9 +23,19 @@ const COLOR_HIGHLIGHT = 'var(--cor-highlight)';
 function addTasks() {
   const li = document.createElement('li');
   li.innerText = inputText.value;
-  taskList.appendChild(li);
+  if (li.innerText !== '') {
+    taskList.appendChild(li);
+  }
   document.getElementById('texto-tarefa').value = ''; // redefinindo valor, pra poder limpar a caixinha
 } createTaskBtn.addEventListener('click', addTasks);
+
+// FUNÇÃO QUE ADD TAREFA COM A TECLA ENTER
+function addTarefaWithEnter(event) {
+  if (event.key === 'Enter') {
+    addTasks();
+  }
+}
+inputText.addEventListener('keydown', addTarefaWithEnter);
 
 // FUNÇÃO QUE APAGA TUDO
 function deleteAllBtn() {

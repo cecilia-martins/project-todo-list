@@ -58,6 +58,10 @@
   border: none;
 }
 
+#criar-tarefa:active {
+  background-color: var(--cor-alerta-2);
+}
+
 #container-btns {
   display: flex;
   justify-content: space-between;
@@ -83,6 +87,10 @@
   border: none;
 }
 
+#apaga-tudo:active {
+  background-color: var(--cor-ternary);
+}
+
 #mover-cima {
   width: 40px;
   height: 40px;
@@ -101,6 +109,10 @@
   background: var(--cor-alerta-2);
   border-radius: 3px;
   border: none;
+}
+
+#mover-cima:active , #mover-baixo:active {
+  background-color: var(--cor-highlight);
 }
 
 #remover-finalizados {
@@ -125,6 +137,11 @@
   border: none;
 }
 
+#remover-selecionado:active , #remover-finalizados:active {
+  background: var(--cor-texto);
+  color: var(--cor-fundo);
+}
+
 #salvar-tarefas {
   width: 80px;
   height: 40px;
@@ -134,6 +151,10 @@
   background: var(--cor-sucesso-2);
   border-radius: 3px;
   border: none;
+}
+
+#salvar-tarefas:active {
+  background: var(--cor-sucesso-1);
 }
 
 .completed {
