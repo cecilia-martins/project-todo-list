@@ -23,8 +23,6 @@
   border: solid var(--cor-headline) 2px;
   border-radius: 5px;
   padding: 60px;
-
-  /* box-shadow: 0.5px 0.5px 1px 0.5px grey; */
 }
 
 #input-tarefa {
@@ -66,15 +64,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  /* padding: 20px 10px 10px; */
-
-  /* margin-top: 20px; */
-}
-
-#lista-tarefas {
-
-  /* ttt */
 }
 
 #apaga-tudo {

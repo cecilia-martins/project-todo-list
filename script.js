@@ -1,20 +1,11 @@
-// pegando meu texto-tarefa.. input onde escreve a tarefa
 const inputText = document.getElementById('texto-tarefa');
-// pegando meu criar-tarefa.. botao que add tarefas
 const createTaskBtn = document.querySelector('#criar-tarefa');
-// pegando minha lista
 const taskList = document.getElementById('lista-tarefas');
-// pegando o botão apaga-tudo
 const x = document.getElementById('apaga-tudo');
-// pegando o botão mover-cima
 const toUpBtn = document.getElementById('mover-cima');
-// pegando o botão mover-baixo
 const toDownBtn = document.getElementById('mover-baixo');
-// pegando o botão remover-finalizados
 const finishedBtn = document.getElementById('remover-finalizados');
-// pegando o botão remover-selecionado
 const removeSelectedBtn = document.getElementById('remover-selecionado');
-// pegando o  botão salvar-tarefas
 const saveTasksBtn = document.getElementById('salvar-tarefas');
 
 const COLOR_HIGHLIGHT = 'var(--cor-highlight)';
@@ -26,7 +17,7 @@ function addTasks() {
   if (li.innerText !== '') {
     taskList.appendChild(li);
   }
-  document.getElementById('texto-tarefa').value = ''; // redefinindo valor, pra poder limpar a caixinha
+  document.getElementById('texto-tarefa').value = ''; // limpando a caixinha em seguida
 } createTaskBtn.addEventListener('click', addTasks);
 
 // FUNÇÃO QUE ADD TAREFA COM A TECLA ENTER
@@ -55,12 +46,10 @@ function backgroundChanged({ target }) {
   for (let i = 0; i < taskList.children.length; i += 1) {
     taskList.children[i].style.backgroundColor = '';
   }
-  // eslint-disable-next-line sonarjs/no-duplicate-string, no-param-reassign
   target.style.backgroundColor = COLOR_HIGHLIGHT;
 } taskList.addEventListener('click', backgroundChanged);
 
-// FUNÇÃO DO BOTÃO REMOVER FINALIZADOS - removeFinalkizado
-
+// FUNÇÃO DO BOTÃO REMOVER FINALIZADOS
 function removerFinalizado() {
   for (let i = taskList.children.length - 1; i >= 0; i -= 1) {
     if (taskList.children[i].classList[0] === 'completed') {
@@ -69,7 +58,7 @@ function removerFinalizado() {
   }
 } finishedBtn.addEventListener('click', removerFinalizado);
 
-// FUNÇÃO DO BOTÃO DE SALAVAR
+// FUNÇÃO DO BOTÃO DE SALVAR
 function localStorageSave() {
   const tasks = [];
   for (let i = 0; i < taskList.children.length; i += 1) {
@@ -83,7 +72,7 @@ function localStorageSave() {
   localStorage.setItem('tarefas', JSON.stringify(tasks));
 }
 
-// Carrega as tarefas salvas no localStorage quando a página carrega
+// FUNÇÃO QUE CARREGA TAREFAS SALVA NO LOCALSTORAGE
 function saveTasks() {
   const savedTasks = localStorage.getItem('tarefas');
   if (savedTasks) {
@@ -103,25 +92,22 @@ function saveTasks() {
 
 saveTasksBtn.addEventListener('click', localStorageSave);
 
-// FUNÇÕES AUXILIARES DO MOVEDOWN
-
+// FUNÇÕES AUXILIARES DOS BOTÕES UP/DOWN
 function findSelectedTask(task) {
   return task.nextElementSibling !== null && task.style.backgroundColor === COLOR_HIGHLIGHT;
 }
 
 function swapTaskElements(task1, task2) {
   const tempText = task1.innerText;
-  // eslint-disable-next-line no-param-reassign
+
   task1.innerText = task2.innerText;
-  // eslint-disable-next-line no-param-reassign
   task2.innerText = tempText;
 }
 
 function updateTaskColors(task1, task2) {
   const selectedColor = task1.style.backgroundColor;
-  // eslint-disable-next-line no-param-reassign
+  
   task1.style.backgroundColor = task2.style.backgroundColor;
-  // eslint-disable-next-line no-param-reassign
   task2.style.backgroundColor = selectedColor;
 }
 
@@ -159,11 +145,10 @@ function moveDownBtn() {
 // FUNÇÃO BOTÃO REMOVER SELECIONADO
 function removeSelected() {
   let selected = '';
-  for (let index = taskList.children.length - 1; index >= 0; index -= 1) {
-    if (taskList.children[index].style.backgroundColor === COLOR_HIGHLIGHT) {
-      selected = taskList.children[index];
+  for (let i = taskList.children.length - 1; i >= 0; i -= 1) {
+    if (taskList.children[i].style.backgroundColor === COLOR_HIGHLIGHT) {
+      selected = taskList.children[i];
       taskList.removeChild(selected);
-      return taskList;
     }
   }
 } removeSelectedBtn.addEventListener('click', removeSelected);
