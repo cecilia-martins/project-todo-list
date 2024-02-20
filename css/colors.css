@@ -1,0 +1,33 @@
+:root {
+
+  --cor-main: #f2f7f5;
+
+  --cor-headline: #00473e;
+
+  --cor-paragraph: #475d5b;
+
+  --cor-highlight: #faae2b;
+
+  --cor-stroke: #00332c;
+
+  --cor-secondary: #ffa8ba;
+
+  --cor-ternary: #fa5246;
+
+  --cor-erro-1: #e10000;
+
+  --cor-erro-2: #ffcdcd;
+
+  --cor-alerta-1: #fabe2d;
+
+  --cor-alerta-2: #fad269;
+
+  --cor-sucesso-1: #1e8728;
+
+  --cor-sucesso-2: #cdf5d2;
+
+  --cor-fundo: #ccc;
+
+  --cor-texto: #333;
+
+}

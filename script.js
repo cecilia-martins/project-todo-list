@@ -1,139 +1,154 @@
-// BOTÕES
-// pegando meu texto-tarefa.. input onde escreve a tarefa
-const textoTarefa = document.getElementById('texto-tarefa');
-// pegando meu criar-tarefa.. botao que add tarefas
-const btnCriarTarefas = document.querySelector('#criar-tarefa');
-// pegando minha lista
-const lisDeTarefas = document.getElementById('lista-tarefas');
-// pegando o botão apaga-tudo
+const inputText = document.getElementById('texto-tarefa');
+const createTaskBtn = document.querySelector('#criar-tarefa');
+const taskList = document.getElementById('lista-tarefas');
 const x = document.getElementById('apaga-tudo');
-// pegando o botão mover-cima
-const praCima = document.getElementById('mover-cima');
-// pegando o botão mover-baixo
-const praBaixo = document.getElementById('mover-baixo');
-// pegando o botão remover-finalizados
-const removeFinalizado = document.getElementById('remover-finalizados');
-// pegando o botão remover-selecionado
-const removeSelecionado = document.getElementById('remover-selecionado');
-// pegando o  botão salvar-tarefas
-// const salvar = document.getElementById('salvar-tarefas');
+const toUpBtn = document.getElementById('mover-cima');
+const toDownBtn = document.getElementById('mover-baixo');
+const finishedBtn = document.getElementById('remover-finalizados');
+const removeSelectedBtn = document.getElementById('remover-selecionado');
+const saveTasksBtn = document.getElementById('salvar-tarefas');
+
+const COLOR_HIGHLIGHT = 'var(--cor-highlight)';
 
 // FUNÇÃO QUE ADD TAREFA
-function addTarefa() {
-  /* alert("funfou?"); */
-  /* alert(textoTarefa); */
+function addTasks() {
   const li = document.createElement('li');
-  li.innerText = textoTarefa.value;
-  lisDeTarefas.appendChild(li);
+  li.innerText = inputText.value;
+  if (li.innerText !== '') {
+    taskList.appendChild(li);
+  }
+  document.getElementById('texto-tarefa').value = ''; // limpando a caixinha em seguida
+} createTaskBtn.addEventListener('click', addTasks);
 
-  document.getElementById('texto-tarefa').value = ''; // redefinindo valor, pra poder limpar a caixinha
+// FUNÇÃO QUE ADD TAREFA COM A TECLA ENTER
+function addTarefaWithEnter(event) {
+  if (event.key === 'Enter') {
+    addTasks();
+  }
 }
-// add o tal do evento de click
-btnCriarTarefas.addEventListener('click', addTarefa);
-// ENTENDI ERRADO??? NÃO SEI, MAS TA FUNCIONANDO KKKKKKK <33333
-// NÃO MEXE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+inputText.addEventListener('keydown', addTarefaWithEnter);
 
 // FUNÇÃO QUE APAGA TUDO
-function apagaTudo() {
-  if (lisDeTarefas.innerText !== '') {
-    lisDeTarefas.innerText = '';
+function deleteAllBtn() {
+  if (taskList.innerText !== '') {
+    taskList.innerText = '';
   }
 }
-x.addEventListener('click', apagaTudo); // MEU BOTÃO FUNCIONA!!!!!!!!!!!!!!!!AAAAAAAAAAAAAAAA NÃO MEXE!!!!!!!!!!!!!!!!!!
+x.addEventListener('click', deleteAllBtn);
 
-// FUNÇÃO QUE..RISCA
-// CRIANDO A FUNÇÃO
-function risca(event) {
+// FUNÇÃO QUE..RISCA FINALIZADOS
+function completedTask(event) {
   event.target.classList.toggle('completed');
-  // troquei add pelo toggle
-
-// console.log('funfou')
-} lisDeTarefas.addEventListener('dblclick', risca); // FUNCIONANDO, NÃO MEXE!!!!
+} taskList.addEventListener('dblclick', completedTask);
 
 // FUNÇÃO MUDAR COR
-function corFundo({ target }) {
-  // console.log(lisDeTarefas.children.length);
-  for (let posi = 0; posi < lisDeTarefas.children.length; posi += 1) {
-    lisDeTarefas.children[posi].style.backgroundColor = '';
+function backgroundChanged({ target }) {
+  for (let i = 0; i < taskList.children.length; i += 1) {
+    taskList.children[i].style.backgroundColor = '';
   }
-  // eslint-disable-next-line no-param-reassign
-  // eslint-disable-next-line sonarjs/no-duplicate-string
-  target.style.backgroundColor = 'rgb(128, 128, 128)';
-} lisDeTarefas.addEventListener('click', corFundo);
-//
+  target.style.backgroundColor = COLOR_HIGHLIGHT;
+} taskList.addEventListener('click', backgroundChanged);
 
-// FUNÇÃO DO BOTÃO REMOVER FINALIZADOS - removeFinalkizado
-
+// FUNÇÃO DO BOTÃO REMOVER FINALIZADOS
 function removerFinalizado() {
-  let liFilho = '';
-  for (let posi = lisDeTarefas.children.length - 1; posi >= 0; posi -= 1) {
-  //  console.log(lisDeTarefas.childNodes[posi].classList[0]);
-    if (lisDeTarefas.children[posi].classList[0] === 'completed') {
-      liFilho = lisDeTarefas.children[posi];
-
-      lisDeTarefas.removeChild(liFilho);
+  for (let i = taskList.children.length - 1; i >= 0; i -= 1) {
+    if (taskList.children[i].classList[0] === 'completed') {
+      taskList.removeChild(taskList.children[i]);
     }
   }
+} finishedBtn.addEventListener('click', removerFinalizado);
+
+// FUNÇÃO DO BOTÃO DE SALVAR
+function localStorageSave() {
+  const tasks = [];
+  for (let i = 0; i < taskList.children.length; i += 1) {
+    const task = {
+      texto: taskList.children[i].innerText,
+      classe: taskList.children[i].classList.contains('completed') ? 'completed' : '',
+    };
+    tasks.push(task);
+  }
+  // Salva o array de tarefas no localStorage como uma string
+  localStorage.setItem('tarefas', JSON.stringify(tasks));
 }
-removeFinalizado.addEventListener('click', removerFinalizado);
-// FUNÇÃO DO BOTÃO DE SALAVAR - RASCUNHO
 
-// function localStorage(){
-//   let ???????
-//   // localStorage.setItem();
-//   document.getElementById('texto-tarefa').value ?????????
+// FUNÇÃO QUE CARREGA TAREFAS SALVA NO LOCALSTORAGE
+function saveTasks() {
+  const savedTasks = localStorage.getItem('tarefas');
+  if (savedTasks) {
+    const tasks = JSON.parse(savedTasks);
+    // Adiciona as tasks de volta à lista
+    tasks.forEach((task) => {
+      const li = document.createElement('li');
+      li.innerText = task.texto;
+      // Adiciona a classe 'completed' se a task tiver essa classe
+      if (task.classe === 'completed') {
+        li.classList.add('completed');
+      }
+      taskList.appendChild(li);
+    });
+  }
+} window.addEventListener('load', saveTasks);
 
-// } salvar.addEventListener('click', localStorage);
+saveTasksBtn.addEventListener('click', localStorageSave);
 
-// FUNÇÃO DO BOTÃO CIMA
-function moverCima() {
-  let irmaoSelecionado = '';
-  let irmaoDeCima = '';
-  for (let i = 0; i < lisDeTarefas.children.length; i += 1) {
-    if (lisDeTarefas.children[i]
-      .previousSibling.innerText !== undefined && lisDeTarefas
-      .children[i].style.backgroundColor === 'rgb(128, 128, 128)') {
-      irmaoDeCima = lisDeTarefas.children[i].previousSibling.innerText;
+// FUNÇÕES AUXILIARES DOS BOTÕES UP/DOWN
+function findSelectedTask(task) {
+  return task.nextElementSibling !== null && task.style.backgroundColor === COLOR_HIGHLIGHT;
+}
 
-      irmaoSelecionado = lisDeTarefas.children[i].innerText;
-      lisDeTarefas.children[i].previousSibling.innerText = irmaoSelecionado;
-      lisDeTarefas.children[i].innerText = irmaoDeCima;
-      lisDeTarefas.children[i].previousSibling.style.backgroundColor = 'rgb(128, 128, 128)';
-      lisDeTarefas.children[i].style.backgroundColor = '';
-      return lisDeTarefas.children;
+function swapTaskElements(task1, task2) {
+  const tempText = task1.innerText;
+
+  task1.innerText = task2.innerText;
+  task2.innerText = tempText;
+}
+
+function updateTaskColors(task1, task2) {
+  const selectedColor = task1.style.backgroundColor;
+  
+  task1.style.backgroundColor = task2.style.backgroundColor;
+  task2.style.backgroundColor = selectedColor;
+}
+
+// FUNÇÃO DO BOTÃO MOVER PARA CIMA
+function moveUpBtn() {
+  let selected = '';
+  let previousTask = '';
+  for (let i = 0; i < taskList.children.length; i += 1) {
+    if (taskList.children[i].previousSibling.innerText !== undefined
+      && taskList.children[i].style.backgroundColor === COLOR_HIGHLIGHT) {
+      previousTask = taskList.children[i].previousElementSibling;
+      selected = taskList.children[i];
+      updateTaskColors(selected, previousTask);
+      swapTaskElements(selected, previousTask);
+      return taskList.children;
     }
   }
-} praCima.addEventListener('click', moverCima);
+} toUpBtn.addEventListener('click', moveUpBtn);
 
-// FUNÇÃO DO BOTÃO BAIXO
-function moverBaixo() {
-  let selecionado = '';
-  let irmaoDeBaixo = '';
-  for (let i = 0; i < lisDeTarefas.children.length; i += 1) {
-    if (lisDeTarefas.children[i]
-      .nextElementSibling !== null
-      && lisDeTarefas.children[i].style.backgroundColor === 'rgb(128, 128, 128)') {
-      irmaoDeBaixo = lisDeTarefas.children[i].nextElementSibling.innerText;
-      selecionado = lisDeTarefas.children[i].innerText;
-      lisDeTarefas.children[i].nextElementSibling.innerText = selecionado;
-      lisDeTarefas.children[i].innerText = irmaoDeBaixo;
-      lisDeTarefas.children[i].nextElementSibling.style.backgroundColor = 'rgb(128, 128, 128)';
-      lisDeTarefas.children[i].style.backgroundColor = '';
-      return lisDeTarefas.children;
+// FUNÇÃO BOTÃO DE MOVER PARA BAIXO
+function moveDownBtn() {
+  let selected = '';
+  let nextTask = '';
+  for (let i = 0; i < taskList.children.length; i += 1) {
+    if (findSelectedTask(taskList.children[i])) {
+      nextTask = taskList.children[i].nextElementSibling;
+      selected = taskList.children[i];
+      updateTaskColors(selected, nextTask);
+      swapTaskElements(selected, nextTask);
+      return taskList.children;
     }
   }
-} praBaixo.addEventListener('click', moverBaixo);
+} toDownBtn.addEventListener('click', moveDownBtn);
 
 // FUNÇÃO BOTÃO REMOVER SELECIONADO
-function removerSelecionado() {
-  let selecionadoRemove = '';
-  for (let posi = lisDeTarefas.children.length - 1; posi >= 0; posi -= 1) {
-    // eslint-disable-next-line no-constant-condition
-    // eslint-disable-next-line no-cond-assign
-    if (lisDeTarefas.children[posi].style.backgroundColor = 'rgb(128, 128, 128)') {
-      selecionadoRemove = lisDeTarefas.children[posi];
-      lisDeTarefas.removeChild(selecionadoRemove);
-      return lisDeTarefas;
+function removeSelected() {
+  let selected = '';
+  for (let i = taskList.children.length - 1; i >= 0; i -= 1) {
+    if (taskList.children[i].style.backgroundColor === COLOR_HIGHLIGHT) {
+      selected = taskList.children[i];
+      taskList.removeChild(selected);
     }
   }
-} removeSelecionado.addEventListener('click', removerSelecionado);
+} removeSelectedBtn.addEventListener('click', removeSelected);

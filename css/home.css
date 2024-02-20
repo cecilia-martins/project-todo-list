@@ -1,0 +1,151 @@
+.conteudo {
+  background-color: var(--cor-main);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#titulo {
+  font-size: 1.5rem;
+  line-height: 1;
+  padding: 20px 20px 10px;
+  color: var(--cor-headline);
+}
+
+#funcionamento {
+  padding-bottom: 20px;
+  color: var(--cor-paragraph);
+}
+
+.container-main {
+  border: solid var(--cor-headline) 2px;
+  border-radius: 5px;
+  padding: 60px;
+}
+
+#input-tarefa {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+#input-tarefa input {
+  border: solid 2px var(--cor-headline);
+  width: 400px;
+  height: 30px;
+  border-radius: 3px;
+}
+
+#input-tarefa input::placeholder {
+  font-family: Poppins, sans-serif;
+  text-transform: uppercase;
+  padding-left: 2px;
+}
+
+#criar-tarefa {
+  width: 160px;
+  height: 35px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--cor-headline);
+  background: var(--cor-highlight);
+  border-radius: 3px;
+  border: none;
+}
+
+#criar-tarefa:active {
+  background-color: var(--cor-alerta-2);
+}
+
+#container-btns {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#apaga-tudo {
+  width: 40px;
+  height: 40px;
+  font-weight: 600;
+  color: var(--cor-texto);
+  background: var(--cor-erro-2);
+  border-radius: 3px;
+  border: none;
+}
+
+#apaga-tudo:active {
+  background-color: var(--cor-ternary);
+}
+
+#mover-cima {
+  width: 40px;
+  height: 40px;
+  font-weight: 600;
+  color: var(--cor-texto);
+  background: var(--cor-alerta-2);
+  border-radius: 3px;
+  border: none;
+}
+
+#mover-baixo {
+  width: 40px;
+  height: 40px;
+  font-weight: 600;
+  color: var(--cor-texto);
+  background: var(--cor-alerta-2);
+  border-radius: 3px;
+  border: none;
+}
+
+#mover-cima:active , #mover-baixo:active {
+  background-color: var(--cor-highlight);
+}
+
+#remover-finalizados {
+  width: 120px;
+  height: 40px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--cor-texto);
+  background: var(--cor-fundo);
+  border-radius: 3px;
+  border: none;
+}
+
+#remover-selecionado {
+  width: 130px;
+  height: 40px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--cor-texto);
+  background: var(--cor-fundo);
+  border-radius: 3px;
+  border: none;
+}
+
+#remover-selecionado:active , #remover-finalizados:active {
+  background: var(--cor-texto);
+  color: var(--cor-fundo);
+}
+
+#salvar-tarefas {
+  width: 80px;
+  height: 40px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--cor-texto);
+  background: var(--cor-sucesso-2);
+  border-radius: 3px;
+  border: none;
+}
+
+#salvar-tarefas:active {
+  background: var(--cor-sucesso-1);
+}
+
+.completed {
+  text-decoration: line-through solid black;
+}
