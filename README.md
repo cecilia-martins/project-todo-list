@@ -1,4 +1,3 @@
-
 # Projeto Todo List  ─ um clássico
 
 Este projeto é um sistema simples de gerenciamento de tarefas que permite aos usuários adicionar, marcar como concluídas e remover tarefas. Também possui funcionalidades para mover tarefas para cima e para baixo na lista, remover tarefas concluídas ou selecionadas e salvar a lista no localStorage.
@@ -26,9 +25,10 @@ Este projeto é um sistema simples de gerenciamento de tarefas que permite aos u
 <img src="./img/todo list project 4k.gif">
 
 
-## Screenshots
+<!-- ## Screenshots
 
 <img src="./img/todo-list-project.png" width="800px">
+-->
 
 
 ## Contribuindo
